@@ -42,15 +42,16 @@ class Gupa
    */
   protected static $SERVICE_MAP =array(
   	'/oauth/access_token/',
-  	'/oauth/request_token/',
-    '/license/get_token',
-    '/license/get_license',
-    '/user/get_info/',
+    '/license/',
+    '/user/getinfo/',
     '/basic_calc/coord/',
   	'/basic_calc/azmt_dist/',
   	'/traverse/free/',
   	'/traverse/ring/',
-  	'/traverse/closed/'
+  	'/traverse/closed/',
+  	'/reduction/reduce/',
+  	'/reduction/geometric/',
+  	'/reduction/meteorological/'
   );
 
   /**
