@@ -42,8 +42,10 @@ class Gupa
    */
   protected static $SERVICE_MAP =array(
   	'/oauth/access_token/',
-    '/license/',
-    '/user/getinfo/',
+  	'/oauth/request_token/',
+    '/license/get_token',
+    '/license/get_license',
+    '/user/get_info/',
     '/basic_calc/coord/',
   	'/basic_calc/azmt_dist/',
   	'/traverse/free/',
