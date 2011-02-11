@@ -24,7 +24,7 @@ if ($this->gu_session->isLogged()):
 <?php else: ?>
 			<ul>
 				<li><a href="http://www.geomatikuygulamalar.com/v2/user/login">Oturum Aç</a></li>
-				<li><a href="http://www.geomatikuygulamalar.com/v2/store/application/8364185514">Uygulama Sayfası</a></li>
+				<li><a href="http://www.geomatikuygulamalar.com/v2/store/application/<?php echo $this->config->item("appID"); ?>">Uygulama Sayfası</a></li>
 			</ul>
 <?php endif; ?>
 	    </div>
