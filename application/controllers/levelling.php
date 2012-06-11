@@ -90,7 +90,7 @@ class Levelling extends Controller {
 		$tag = trim($this->input->post('tag',TRUE));
 		if (empty($tag))
 		{
-			echo '<div id="warning">Lütfen etiket alanını boş bırakmayın.</div>';
+			echo '<div class="alert alert-error">Lütfen etiket alanını boş bırakmayın.</div>';
 			exit();
 		}
 		$data=$this->LevellingModel->getData();
@@ -99,7 +99,7 @@ class Levelling extends Controller {
 			$isExist = $this->LevellingModel->isExist($tag);
 			if ($isExist)
 			{
-				echo '<div id="warning">Bu etiketle başka bir proje kaydetmişsiniz. Lütfen farklı bir etiket kullanın.</div>';
+				echo '<div class="alert alert-error">Bu etiketle başka bir proje kaydetmişsiniz. Lütfen farklı bir etiket kullanın.</div>';
 			}else
 			{
 				$saveData=array(
@@ -118,11 +118,11 @@ class Levelling extends Controller {
 					'max_dhi' => $data['maxDHI']
 				);
 				$this->LevellingModel->save($saveData);
-				echo '<div id="success">Projeniz başarıyla kaydedildi.</div>';
+				echo '<div class="alert alert-success">Projeniz başarıyla kaydedildi.</div>';
 			}
 		}else
 		{
-			echo '<div id="warning">Tablodaki tüm alanları doldurmadan projenizi kaydedemezsiniz.</div>';
+			echo '<div class="alert">Tablodaki tüm alanları doldurmadan projenizi kaydedemezsiniz.</div>';
 		}
 	}
 
@@ -173,13 +173,15 @@ class Levelling extends Controller {
 	* @return String
 	*/
 	function _prepareRegulation($data){
-		$regulation  = '<fieldset><legend><b>Hesap Kontrolü</b></legend>';
-		$regulation .= '<table cellspacing="10" width="100%"><tr><td valign="top" class="regulation">';
-		$regulation .= 'w<sub>L</sub> = '.sprintf("%0.1f mm",array_sum($data['m_deltah'])*1000).' &nbsp;&nbsp;';
-		$regulation .= '<img src="'.base_url().'images/regulation/lkm.png" align="absbottom"> = '.sprintf("%.3f",array_sum($data['m_l'])/1000);
-		$regulation .= '<br/><br/><img src="'.base_url().'images/regulation/wlkucuk.png" align="absbottom"><input type="text" size="1" value="'.$data['WL'].'" style="text-align:center;" name="WL"><img src="'.base_url().'images/regulation/lkm.png" align="absbottom">';
-		$regulation .= '&nbsp;&nbsp;<img src="'.base_url().'images/regulation/wkucuk.png" align="absbottom"><input type="text" size="1" value="'.$data['maxDHI'].'" style="text-align:center;" name="maxDHI"><img src="'.base_url().'images/regulation/skm.png" align="absbottom">';
-		$regulation .= '<td></tr></table></fieldset>';
+		$regulation  = '<h3>Hesap Kontrolü</h3>';
+		$regulation .= '<div class="row">';
+		$regulation .= '<div class="span3">';
+		$regulation .= '<p>w<sub>L</sub> = '.sprintf("%0.1f mm",array_sum($data['m_deltah'])*1000).'</p>';
+		$regulation .= '<p><img src="'.base_url().'images/regulation/lkm.png" align="absbottom"> = '.sprintf("%.3f",array_sum($data['m_l'])/1000).'</p>';
+		$regulation .= '</div><div class="span3">';
+		$regulation .= '<p><img src="'.base_url().'images/regulation/wlkucuk.png" align="absbottom"><input type="text" value="'.$data['WL'].'" class="input-mini" name="WL"><img src="'.base_url().'images/regulation/lkm.png" align="absbottom"></p>';
+		$regulation .= '<p><img src="'.base_url().'images/regulation/wkucuk.png" align="absbottom"><input type="text" value="'.$data['maxDHI'].'" class="input-mini" name="maxDHI"><img src="'.base_url().'images/regulation/skm.png" align="absbottom"></p>';
+		$regulation .= '</div></div>';
 		return $regulation;
 	}
 }

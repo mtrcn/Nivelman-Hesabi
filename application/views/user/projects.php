@@ -7,10 +7,14 @@
 			}
 		}
 	</script>
-  	<h1>Projeler</h1>
+<h2>Projeler</h2>
+<p>
     Aşağıda daha önce kaydettiğiniz projeleri görüyorsunuz.
-    <table id="list-table" width="100%">
-    	<tr><th width="17%">Tarih</th><th width="15%">Nivelman Türü</th><th>Etiket</th><th width="18%">İşlemler</th></tr>
+</p>
+<div>
+<table class="table">
+	<thead>
+    	<tr><th width="17%">Tarih</th><th width="15%">Nivelman Türü</th><th>Etiket</th><th width="15%">İşlemler</th></tr>
 <?php
 $title_tr=array('free' => 'Açık Nivelman','ring' => 'Kapalı Nivelman','closed' => 'Bağlı Nivelman');
 if ($projects->num_rows()>0)
@@ -23,8 +27,8 @@ if ($projects->num_rows()>0)
 			<td><?php echo $title_tr[$project->type]; ?></td>
 			<td><?php echo $project->tag; ?></td>
 			<td align="center">
-				<input type="button" style="width:50px; text-align:center;" value="Aç" onClick="javascript:window.location='<?php echo site_url("levelling/open/".$project->pid); ?>'">
-				<input type="button" style="width:50px; text-align:center;" value="Sil" onClick="deleteProject(<?php echo $project->pid; ?>)">
+				<button class="btn btn-large" onClick="javascript:window.location='<?php echo site_url("levelling/open/".$project->pid); ?>'">Aç</button>
+				<button class="btn btn-danger btn-large" onClick="deleteProject(<?php echo $project->pid; ?>)">Sil</button>
 			</td>
 		</tr>
 <?php
@@ -37,9 +41,43 @@ if ($projects->num_rows()>0)
 }
 ?>
     </table>
-	<div id="help">
-		<div class="helpItem">
-			<p>Kaydettiğiniz bir projeyi listeden açarak çalışmanıza devam edebilir veya silebilirsiniz.</p>
-		</div>
-	</div>
+    <div class="alert alert-info">
+    	Daha önce Geomatik Uygulamalar Lisans Sistemi ile kaydettiğiniz projeleri yüklemek için butona tıklayın. 
+    	<a href="#LoadGUProjectsForm" data-toggle="modal"  class="btn">GU Projelerimi Yükle</a>
+    </div>
+    <div class="alert alert-info">
+    	Kaydettiğiniz bir projeyi listeden açarak çalışmanıza devam edebilir veya silebilirsiniz.
+    </div>
 </div>
+<script type="text/javascript">
+	    function LoadGUProjects(form){
+	        if ($("#id").val()=="")
+	        {
+	            alert("Hesap Numarası alanını boş bırakamazsınız!");
+	        }else
+	        {
+	        	$.post(
+	        		"<?php echo base_url(); ?>user/load_gu_projects", 
+	        		$("#LoadGUProjectsForm").serialize(),
+	        		function(result){
+	        		    $("#LoadGUProjectsResult").html(result);
+	        		}
+	        	);
+	        }
+	    }
+</script>
+<form class="modal hide" id="LoadGUProjectsForm" action="<?php echo base_url(); ?>user/loadGUProjects" method="post">
+    <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>GU Lisans Projelerini Yükle</h3>
+    </div>
+    <div class="modal-body">
+   		<label for="id">GU Üye Hesap Numarası:</label>
+	    <input type="text" name="id" id="id"/>
+	    <div id="LoadGUProjectsResult"></div>
+	</div>
+    <div class="modal-footer">
+	    <a href="<?php echo base_url(); ?>user/projects" class="btn">Kapat</a>
+	    <input type="button" class="btn btn-primary" value="Yükle" onClick="LoadGUProjects(this.form)"/>
+	</div>
+</form>

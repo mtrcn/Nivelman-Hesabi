@@ -6,62 +6,54 @@
         form.submit();
   }
 
-  function show_error()
+  function show_criteria()
   {
 	$("#error_limit_2").show();
 	$("#error_limit_1").show();
   }
 
-  function hide_error()
+  function hide_criteria()
   {
 	$("#error_limit_2").hide();
 	$("#error_limit_1").hide();
   }
 </script>
-<h1>Yeni Proje</h1>
+<h2>Yeni Proje</h2>
 <form method="post" action="<? echo site_url("levelling/table"); ?>">
-<table width="100%">
+<table class="table">
 	<tr>
 		<td width="180px">Nivelman Türü</td>
 		<td>: <input name="levelling_type" type="radio" value="free"
-			checked="checked" onclick="hide_error()" /> Açık <input name="levelling_type" type="radio"
-			value="ring" onclick="show_error()" /> Kapalı <input name="levelling_type" type="radio"
-			value="closed" onclick="show_error()" /> Bağlı</td>
+			checked="checked" onclick="hide_criteria()" /> Açık <input name="levelling_type" type="radio"
+			value="ring" onclick="show_criteria()" /> Kapalı <input name="levelling_type" type="radio"
+			value="closed" onclick="show_criteria()" /> Bağlı</td>
 	</tr>
 	<tr>
 		<td>Nokta Sayısı</td>
-		<td>: <input type="text" size="5" style="text-align: center;"
-			name="num_points"></td>
+		<td>: <input type="text" size="5" class="input-small" name="num_points"></td>
 	</tr>
 	<tr id="error_limit_1" style="display:none">
           <td>Lup Kapanma Sınırı</td>
           <td>: 
-            <img src="<?php echo base_url(); ?>images/regulation/wlkucuk.png" align="absbottom"><input type="text" size="1" value="15" style="text-align:center;" name="WL"><img src="<?=base_url()?>images/regulation/lkm.png" align="absbottom"><br>
+            <img src="<?php echo base_url(); ?>images/regulation/wlkucuk.png">
+            <input class="input-mini" type="text" value="15" name="WL"><img src="<?=base_url()?>images/regulation/lkm.png"><br>
           </td>
         </tr>
     <tr id="error_limit_2" style="display:none">
           <td>Gidiş-Dönüş Kapanma Sınırı</td>
           <td>: 
-            <img src="<?php echo base_url(); ?>images/regulation/wkucuk.png" align="absbottom"><input type="text" value="12" size="1" style="text-align:center;" name="maxDHI"><img src="<?=base_url()?>images/regulation/skm.png" align="absbottom">
+            <img src="<?php echo base_url(); ?>images/regulation/wkucuk.png">
+            <input type="text" value="12" class="input-mini" name="maxDHI">
+            <img src="<?=base_url()?>images/regulation/skm.png">
           </td>
     </tr>
-	<tr>
-		<td colspan="2" align="center">
-			<input style="width: 200px; text-align: center;" type="button"
-	onclick="javascript:check_form(this.form)" value="Devam >>" />
-		</td>
-	</tr>
-</table>
+</table>			
+<input class="btn btn-large" type="button" onclick="javascript:check_form(this.form)" value="Devam >>" />
 </form>
-<div id="help">
-	<div class="helpItem">
-		<p>
-		- Yeni bir proje oluşturmak için <b>Nivelman Türü</b> ve <b>Nokta Sayısı</b> kısımlarını doldurun.
-		<br/>
-		- Kapalı ve bağlı nivelmanda kapanma sınır değerlerine ne gireceğinizi bilmiyorsanız Büyük Ölçekli Harita ve Harita Bilgileri Üretim Yönetmeliği(2005) Madde-37 ve Madde-38'i inceleyin.
-		<br/>
-		- Varsayılan olarak gelen değerler ana nivelman ağı içindir. 
-		</p>
-	</div>
-</div>
+<div class="alert alert-info">
+		<ul>
+			<li>Yeni bir proje oluşturmak için <b>Nivelman Türü</b> ve <b>Nokta Sayısı</b> kısımlarını doldurun.</li>
+			<li>Kapalı ve bağlı nivelmanda kapanma sınır değerlerine ne gireceğinizi bilmiyorsanız Büyük Ölçekli Harita ve Harita Bilgileri Üretim Yönetmeliği(2005) Madde-37 ve Madde-38'i inceleyin.</li>
+			<li>Varsayılan olarak gelen değerler ana nivelman ağı içindir. </li>		
+		</ul>
 </div>

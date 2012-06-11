@@ -1,13 +1,6 @@
-</div>
-	<div id="footer">
-		<span id="copyright">Geliştirici: <a href="http://www.geomatikuygulamalar.com/v2/store/developer/2570140711" target="_blank" title="Mete Ercan Pakdil">Mete Ercan Pakdil</a></span>
-		<!--  
-		<ul>
-			<li><a href="#">Projeler</a></li>
-			<li><a href="#">Yardım</a></li>
-			<li><a href="#">İletişim</a></li>
-		</ul>
-		-->
+<hr>
+	<div class="container" style="text-align: center;">
+		<a href="http://www.geomates.net" target="_blank" title="Bir Geomates ailesi uygulamasıdır"><img src="<?php echo base_url();?>images/geomates.png"/></a>
 	</div>
 </div>
 </body>

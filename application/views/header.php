@@ -3,29 +3,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Nivelman Hesabı</title>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css" />
-<script type="text/javascript" src="<?php echo base_url(); ?>java_scripts/jquery-1.4.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css" />
+<style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+</style>
+<script type="text/javascript" src="<?php echo base_url(); ?>java_scripts/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>java_scripts/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>java_scripts/bootstrap-modal.js"></script>
 </head>
 <body>
-<div id="container">
-	<div id="holder" class="clearfix">
-		<div id="logo">
-			<h1>Nivelman Hesabı</h1>
-	  	</div>
-		<div id="navigation">
+    <div class="navbar navbar-fixed-top">
+	    <div class="navbar-inner">
+		    <div class="container">
+		    	    <a class="brand" href="#">Nivelman Hesabı</a>
+		    	    <ul class="nav">
 <?php 
 if ($this->gu_session->isLogged()):
 ?>
-			<ul>
-				<li><a href="<?php echo site_url("levelling/new_project"); ?>">Yeni Proje</a></li>
-				<li><a href="<?php echo site_url("user/projects"); ?>">Projeler</a></li>
-				<li><a href="<?php echo site_url("user/account"); ?>">Hesabım</a></li>
-			</ul>
+						<li><a href="<?php echo site_url("levelling/new_project"); ?>">Yeni Proje</a></li>
+						<li><a href="<?php echo site_url("user/projects"); ?>">Projeler</a></li>
+						<li><a href="<?php echo site_url("user/logout"); ?>">Oturumu Kapat</a></li>
 <?php else: ?>
-			<ul>
-				<li><a href="http://www.geomatikuygulamalar.com/v2/user/login">Oturum Aç</a></li>
-				<li><a href="http://www.geomatikuygulamalar.com/v2/store/application/<?php echo $this->config->item("appID"); ?>">Uygulama Sayfası</a></li>
-			</ul>
+						<li class="dropdown">
+			              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Oturum Aç <b class="caret"></b></a>
+			              <ul style="margin:0px" class="dropdown-menu">
+			                <li><a href="<?php echo base_url(); ?>user/login_with_google">Google ile Oturum Açın</a></li>
+				    		<li><a href="<?php echo base_url(); ?>user/login_with_myopenid">myOpenID ile Oturum Açın</a></li>
+			              </ul>
+			            </li>
 <?php endif; ?>
+					</ul>
+		    </div>
 	    </div>
-		<div id="content">
+    </div>
+    <div class="container">
